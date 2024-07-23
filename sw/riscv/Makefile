@@ -62,6 +62,9 @@ apps/hello_world/hello_world.elf: apps/hello_world/hello_world.c
 apps/tflite_scpi/tflite_scpi.elf: libtflm.a
 	$(MAKE) -C apps/tflite_scpi RISCV=$(RISCV) X_HEEP_LIB_FOLDER=../../lib
 
+apps/adv_att/adv_att.elf: libtflm.a
+	$(MAKE) -C apps/adv_att RISCV=$(RISCV) X_HEEP_LIB_FOLDER=../../lib
+
 apps/flash_read_mmap/flash_read_mmap.elf: apps/flash_read_mmap/flash_read_mmap.c
 	$(RISCV_EXE_PREFIX)gcc -march=rv32imc -o $@ -w -Os -g -nostdlib \
 		$(CUSTOM_GCC_FLAGS) \
