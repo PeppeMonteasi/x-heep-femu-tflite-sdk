@@ -211,6 +211,7 @@ int main() {
     } else {
     printf("Inference error");
   }
+  }
   //return SCPI_RES_OK;
 
 
@@ -218,6 +219,7 @@ int main() {
   uart_scpi(&scpi_context, &uart);
 
   return 0;
+
 }
 
 void __attribute__((optimize("O0"))) should_not_happen() {
