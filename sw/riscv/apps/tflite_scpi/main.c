@@ -192,6 +192,29 @@ int main() {
   }
   init_tflite();
   printf("Initialized TFLite\r\n");
+
+  InferExample(&scpi_context);
+
+  printf("infere Example Done, no we do adversial inference:\n");
+
+  const char *out;
+  size_t len;
+  const int8_t *data = lenet_input_data;
+  const int8_t data_adv[lenet_input_data_size];
+  int8_t label[10] = {0, 0, 1, 0, 0, 0, 0, 0, 0, 0};
+  fgsm_attack(data,&label,&data_adv,1);
+  int a = infer((const char *) data_adv, lenet_input_data_size, &out, &len);
+  if (a == 0) {
+    printf("Inference result: ");
+    for (size_t i = 0; i < 10; i++) {
+      printf("%d ", out[i]);
+    } else {
+    printf("Inference error");
+  }
+  //return SCPI_RES_OK;
+
+
+
   uart_scpi(&scpi_context, &uart);
 
   return 0;
