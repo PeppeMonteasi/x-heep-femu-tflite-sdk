@@ -216,7 +216,7 @@ int main() {
   }
   //return SCPI_RES_OK;
 
-
+  return EXIT_SUCCESS;
 
   uart_scpi(&scpi_context, &uart);
 

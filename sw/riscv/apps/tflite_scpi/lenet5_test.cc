@@ -146,7 +146,7 @@ void fgsm_attack(const int8_t *original_image, const int8_t *label, int8_t *adve
 
   // Create the adversarial image
   for (size_t i = 0; i < lenet_input_data_size; i++) {
-    adversarial_image[i] = original_image[i] + ((epsilon)>>4 * gradient[i]);
+    adversarial_image[i] = original_image[i] + ((epsilon) * gradient[i]);
     if (adversarial_image[i] < 0) adversarial_image[i] = 0;
     if (adversarial_image[i] > 127) adversarial_image[i] = 127;
   }
@@ -168,18 +168,18 @@ void fgsm_attack_with_shift(const int8_t *original_image, const int8_t *label, i
     calculate_gradient(original_image, label, gradient, lenet_input_data_size);
 
     for (size_t i = 0; i < lenet_input_data_size; i++) {
-        extra_bits[i] = original_image[i] 
+        extra_bits[i] = original_image[i];
         extra_bits[i] = extra_bits[i]>>(8-4);
         extra_bits[i] = extra_bits[i]<<(8-4);
 
-        shifted_image[i] = original_image[i] 
+        shifted_image[i] = original_image[i];
         shifted_image[i] = shifted_image[i]<<(4);
 
-        extra_bits_grad[i] = gradient[i] 
+        extra_bits_grad[i] = gradient[i];
         extra_bits_grad[i] = extra_bits_grad[i]>>(8-4);
         extra_bits_grad[i] = extra_bits_grad[i]<<(8-4);
 
-        shifted_grad[i] = gradient[i] 
+        shifted_grad[i] = gradient[i];
         shifted_grad[i] = shifted_grad[i]<<(4);
 
 
