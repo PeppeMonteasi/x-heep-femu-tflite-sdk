@@ -105,7 +105,7 @@ INC_FOLDERS_GCC    = $(addprefix -I ,$(INC_FOLDERS))
 %.dis: %.elf
 	$(RISCV_EXE_PREFIX)objdump -S $< > $@
 
-tflite_scpi.elf: $(CPP_OBJS) $(OBJS) $(LIBSCPI_OBJ) $(LIBTFLM)
+adv_att.elf: $(CPP_OBJS) $(OBJS) $(LIBSCPI_OBJ) $(LIBTFLM)
 	$(RISCV_EXE_PREFIX)gcc -march=rv32imc -o $@ -w -Os -g -std=gnu11 -nostdlib \
 		$(CUSTOM_GCC_FLAGS) \
                 -DHOST_BUILD \
@@ -117,7 +117,7 @@ tflite_scpi.elf: $(CPP_OBJS) $(OBJS) $(LIBSCPI_OBJ) $(LIBTFLM)
                 $(OBJS) $(CPP_OBJS) $(LIBSCPI_OBJ) $(LIBTFLM) $(LIB_RUNTIME) \
                 $(LIB_BASE) \
                 $(LIB_DRIVERS) \
-                -Wl,-Map=tflite_scpi.map \
+                -Wl,-Map=adv_att.map \
                 -L $(RISCV)/riscv32-unknown-elf/lib \
                 -lc -lm -lgcc -lstdc++ -flto -ffunction-sections -fdata-sections -specs=nano.specs
 
