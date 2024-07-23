@@ -193,6 +193,8 @@ int main() {
   init_tflite();
   printf("Initialized TFLite\r\n");
 
+  printf("infere Example:\n");
+
   InferExample(&scpi_context);
 
   printf("infere Example Done, no we do adversial inference:\n");
