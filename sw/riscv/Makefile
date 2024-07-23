@@ -62,8 +62,21 @@ apps/hello_world/hello_world.elf: apps/hello_world/hello_world.c
 apps/tflite_scpi/tflite_scpi.elf: libtflm.a
 	$(MAKE) -C apps/tflite_scpi RISCV=$(RISCV) X_HEEP_LIB_FOLDER=../../lib
 
-apps/adv_att/adv_att.elf: libtflm.a
-	$(MAKE) -C apps/adv_att RISCV=$(RISCV) X_HEEP_LIB_FOLDER=../../lib
+apps/adv_att/adv_att.elf: apps/adv_att/main.c
+	$(RISCV_EXE_PREFIX)gcc -march=rv32imc -o $@ -w -Os -g -nostdlib \
+		$(CUSTOM_GCC_FLAGS) \
+		-DHOST_BUILD \
+		-T link/link.ld \
+		-I $(RISCV)/riscv32-unknown-elf/include \
+		$(INC_FOLDERS_GCC) \
+		-static \
+		$(LIB_CRT) \
+		$^ $(LIB_RUNTIME) \
+		$(LIB_BASE) \
+		$(LIB_DRIVERS) \
+		-Wl,-Map=apps/adv_att/adv_att.map \
+		-L $(RISCV)/riscv32-unknown-elf/lib \
+		-lc -lm -lgcc -flto -ffunction-sections -fdata-sections -specs=nano.specs
 
 apps/flash_read_mmap/flash_read_mmap.elf: apps/flash_read_mmap/flash_read_mmap.c
 	$(RISCV_EXE_PREFIX)gcc -march=rv32imc -o $@ -w -Os -g -nostdlib \
