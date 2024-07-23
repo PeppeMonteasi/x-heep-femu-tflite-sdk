@@ -210,10 +210,12 @@ int main() {
     printf("Inference result: ");
     for (size_t i = 0; i < 10; i++) {
       printf("%d ", out[i]);
-    } else {
+    } 
+  }
+    else {
     printf("Inference error");
   }
-  }
+  
   //return SCPI_RES_OK;
 
   return EXIT_SUCCESS;
