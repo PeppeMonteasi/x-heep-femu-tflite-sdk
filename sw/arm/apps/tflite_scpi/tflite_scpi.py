@@ -1,4 +1,5 @@
-from sdk import x_heep_api as x_heep
+from sdk import x_heep_api 
+from x_heep_api import x_heep
 import os
 
 
