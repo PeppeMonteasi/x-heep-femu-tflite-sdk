@@ -1,6 +1,6 @@
 from pynq import x_heep
 import os
-
+"""
 # Estendi la classe x_heep per aggiungere debug
 class x_heep_debug(x_heep):
 
@@ -18,9 +18,10 @@ class x_heep_debug(x_heep):
 
 print("changing directory")
 os.chdir("/home/g.monteasi/x-heep-femu-tflite-sdk/")
-print("directory changed")
+print("directory changed")"""
+
 # Load the X-HEEP bitstream
-x_heep_dbg = x_heep_debug()
+x_heep_dbg = x_heep()
 
 # Compile the application
 x_heep_dbg.compile_app("tflite_scpi")
