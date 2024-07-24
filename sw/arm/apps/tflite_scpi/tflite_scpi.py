@@ -24,7 +24,10 @@ print("directory changed")"""
 x_heep_dbg = x_heep()
 
 # Compile the application
+print("Compiling application: tflite_scpi")
 x_heep_dbg.compile_app("tflite_scpi")
+print("Compilation complete")
 
 # Run the application
+print("Running application")
 x_heep_dbg.run_app()
