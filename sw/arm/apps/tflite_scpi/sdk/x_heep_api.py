@@ -25,7 +25,7 @@ class x_heep(Overlay):
     def __init__(self, ILA_debug = False, **kwargs):
 
         # Load bitstream
-        super().__init__("/home/g.monteasi/x-heep-femu-sdk/hw/x_heep.bit", **kwargs)
+        super().__init__("/home/xilinx/x-heep-femu-sdk/hw/x_heep.bit", **kwargs)
         self.release_reset()
         self.release_execute_from_flash()
         self.release_boot_select()
