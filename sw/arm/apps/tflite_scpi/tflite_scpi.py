@@ -16,8 +16,9 @@ class x_heep_debug(x_heep):
         super().run_app()
         print("Application execution complete")
 
-
-os.chdir("home/g.monteasi/x-heep-femu-tflite-sdk/")
+print("changing directory")
+os.chdir("/home/g.monteasi/x-heep-femu-tflite-sdk/")
+print("directory changed")
 # Load the X-HEEP bitstream
 x_heep_dbg = x_heep_debug()
 
