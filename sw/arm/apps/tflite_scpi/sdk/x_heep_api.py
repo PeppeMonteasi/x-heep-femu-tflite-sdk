@@ -42,13 +42,13 @@ class x_heep(Overlay):
     def compile_app(self, app_name):
 
         # Compile application
-        os.system("/home/xilinx/x-heep-femu-sdk/sw/arm/app/tflite_scpi/sdk/compile_app.sh " + app_name)
+        os.system("/home/xilinx/x-heep-femu-sdk/sw/arm/sdk/compile_app.sh " + app_name)
 
 
     def run_app(self):
 
         # Run application
-        os.system("/home/xilinx/x-heep-femu-sdk/sw/arm/app/tflite_scpi/sdk/run_app.sh")
+        os.system("/home/xilinx/x-heep-femu-sdk/sw/arm/sdk/run_app.sh")
 
 
     def run_app_debug(self):
