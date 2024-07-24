@@ -1,24 +1,6 @@
-from pynq import x_heep
+from sdk import x_heep_api as x_heep
 import os
-"""
-# Estendi la classe x_heep per aggiungere debug
-class x_heep_debug(x_heep):
 
-    def compile_app(self, app_name):
-        print(f"Compiling application: {app_name}")
-        # Aggiungi ulteriori stampe di debug
-        super().compile_app_peppe(app_name)
-        print("Compilation complete")
-
-    def run_app(self):
-        print("Running application")
-        # Aggiungi ulteriori stampe di debug
-        super().run_app_peppe()
-        print("Application execution complete")
-
-print("changing directory")
-os.chdir("/home/g.monteasi/x-heep-femu-tflite-sdk/")
-print("directory changed")"""
 
 # Load the X-HEEP bitstream
 x_heep_dbg = x_heep()
@@ -31,3 +13,11 @@ print("Compilation complete")
 # Run the application
 print("Running application")
 x_heep_dbg.run_app()
+
+
+
+
+"""
+print("changing directory")
+os.chdir("/home/g.monteasi/x-heep-femu-tflite-sdk/")
+print("directory changed")"""
