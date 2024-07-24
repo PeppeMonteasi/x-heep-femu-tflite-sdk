@@ -216,13 +216,11 @@ int main() {
     printf("Inference error");
   }
   
-  //return SCPI_RES_OK;
+
+
+  //uart_scpi(&scpi_context, &uart);
 
   return 0;
-
-  /*uart_scpi(&scpi_context, &uart);
-
-  return 0;*/
 
 }
 
