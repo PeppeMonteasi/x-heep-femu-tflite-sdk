@@ -7,13 +7,13 @@ class x_heep_debug(x_heep):
     def compile_app(self, app_name):
         print(f"Compiling application: {app_name}")
         # Aggiungi ulteriori stampe di debug
-        super().compile_app(app_name)
+        super().compile_app_peppe(app_name)
         print("Compilation complete")
 
     def run_app(self):
         print("Running application")
         # Aggiungi ulteriori stampe di debug
-        super().run_app()
+        super().run_app_peppe()
         print("Application execution complete")
 
 print("changing directory")
