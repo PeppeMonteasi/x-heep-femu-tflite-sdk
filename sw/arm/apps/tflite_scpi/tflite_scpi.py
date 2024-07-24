@@ -1,5 +1,4 @@
-from sdk import x_heep_api 
-from x_heep_api import x_heep
+from sdk.x_heep_api import x_heep
 import os
 
 
@@ -14,6 +13,7 @@ print("Compilation complete")
 # Run the application
 print("Running application")
 x_heep_dbg.run_app()
+print("Application run complete")
 
 
 
