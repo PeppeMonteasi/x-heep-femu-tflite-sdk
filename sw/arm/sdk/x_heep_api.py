@@ -25,7 +25,7 @@ class x_heep(Overlay):
     def __init__(self, ILA_debug = False, **kwargs):
 
         # Load bitstream
-        super().__init__("/home/g.monteasi/x-heep-femu-sdk/hw/x_heep.bit", **kwargs)
+        super().__init__("/home/g.monteasi/x-heep-femu-tflite-sdk/hw/x_heep.bit", **kwargs)
         self.release_reset()
         self.release_execute_from_flash()
         self.release_boot_select()
@@ -34,7 +34,7 @@ class x_heep(Overlay):
     def load_bitstream(self):
 
         # Load bitstream
-        x_heep = Overlay("/home/g.monteasi/x-heep-femu-sdk/hw/x_heep.bit")
+        x_heep = Overlay("/home/g.monteasi/x-heep-femu-tflite-sdk/hw/x_heep.bit")
 
         return x_heep
 
@@ -42,19 +42,19 @@ class x_heep(Overlay):
     def compile_app(self, app_name):
 
         # Compile application
-        os.system("/home/g.monteasi/x-heep-femu-sdk/sw/arm/sdk/compile_app.sh " + app_name)
+        os.system("/home/g.monteasi/x-heep-femu-tflite-sdk/sw/arm/sdk/compile_app.sh " + app_name)
 
 
     def run_app(self):
 
         # Run application
-        os.system("/home/g.monteasi/x-heep-femu-sdk/sw/arm/sdk/run_app.sh")
+        os.system("/home/g.monteasi/x-heep-femu-tflite-sdk/sw/arm/sdk/run_app.sh")
 
 
     def run_app_debug(self):
 
         # Debug application (no Jupyter support)
-        os.system("/home/g.monteasi/x-heep-femu-sdk/sw/arm/sdk/run_app.sh debug")
+        os.system("/home/g.monteasi/x-heep-femu-tflite-sdk/sw/arm/sdk/run_app.sh debug")
 
 
     def assert_reset(self):
@@ -131,7 +131,7 @@ class x_heep(Overlay):
     def write_flash(self, flash):
 
         # Write Flash from binary file
-        file = open("/home/g.monteasi/x-heep-femu-sdk/sw/riscv/build/flash_in.bin", mode="rb")
+        file = open("/home/g.monteasi/x-heep-femu-tflite-sdk/sw/riscv/build/flash_in.bin", mode="rb")
         file_byte = file.read()
         for i in range(int(len(file_byte)/4)):
             flash[i] = (file_byte[i*4+3] << 24) | (file_byte[i*4+2] << 16) | (file_byte[i*4+1] << 8) | file_byte[i*4];
@@ -141,7 +141,7 @@ class x_heep(Overlay):
     def read_flash(self, flash):
 
         # Read Flash to binary file
-        file = open("/home/g.monteasi/x-heep-femu-sdk/sw/riscv/build/flash_out.bin", mode="wb")
+        file = open("/home/g.monteasi/x-heep-femu-tflite-sdk/sw/riscv/build/flash_out.bin", mode="wb")
         byte_array = bytearray(flash)
         file.write(byte_array)
         file.close()
@@ -169,7 +169,7 @@ class x_heep(Overlay):
     def write_adc_mem(self, adc_mem):
 
         # Write ADC memory from binary file
-        file = open("/home/g.monteasi/x-heep-femu-sdk/sw/riscv/build/adc_in.bin", mode="rb")
+        file = open("/home/g.monteasi/x-heep-femu-tflite-sdk/sw/riscv/build/adc_in.bin", mode="rb")
         file_byte = file.read()
         for i in range(int(len(file_byte)/4)):
             adc_mem.write(i*4, (file_byte[i*4+3] << 24) | (file_byte[i*4+2] << 16) | (file_byte[i*4+1] << 8) | file_byte[i*4])
@@ -179,7 +179,7 @@ class x_heep(Overlay):
     def read_adc_mem(self, adc_mem):
 
         # Read ADC memory to binary file
-        file = open("/home/g.monteasi/x-heep-femu-sdk/sw/riscv/build/adc_out.bin", mode="wb")
+        file = open("/home/g.monteasi/x-heep-femu-tflite-sdk/sw/riscv/build/adc_out.bin", mode="wb")
         for i in range(2048):
             file.write(adc_mem.read(i*4).to_bytes(4, 'little'))
         file.close()
@@ -280,7 +280,7 @@ class x_heep(Overlay):
     def read_perf_cnt(self, perf_cnt):
 
         # Save performance counters to CSV file
-        with open('/home/g.monteasi/x-heep-femu-sdk/sw/riscv/build/perf_cnt.csv', mode='w') as perf_cnt_file:
+        with open('/home/g.monteasi/x-heep-femu-tflite-sdk/sw/riscv/build/perf_cnt.csv', mode='w') as perf_cnt_file:
             perf_cnt_writer = csv.writer(perf_cnt_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
             perf_cnt_writer.writerow(['module', '', '',                        'active cycles',        'clock-gate cycles',        'power-gate cycles',         'retentive cycles', ''])
@@ -318,13 +318,13 @@ class x_heep(Overlay):
 
     def estimate_performance(self):
 
-        with open('/home/g.monteasi/x-heep-femu-sdk/sw/riscv/build/perf_cnt.csv') as perf_cnt_file:
+        with open('/home/g.monteasi/x-heep-femu-tflite-sdk/sw/riscv/build/perf_cnt.csv') as perf_cnt_file:
             perf_cnt_reader = csv.reader(perf_cnt_file, delimiter=',')
             perf_cnt = []
             for row in perf_cnt_reader:
                 perf_cnt.append(row)
 
-            with open('/home/g.monteasi/x-heep-femu-sdk/sw/riscv/build/perf_estim.csv', mode='w') as perf_estim_file:
+            with open('/home/g.monteasi/x-heep-femu-tflite-sdk/sw/riscv/build/perf_estim.csv', mode='w') as perf_estim_file:
                 perf_estim_writer = csv.writer(perf_estim_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
                 # Save performance estimation to CSV file
@@ -502,13 +502,13 @@ class x_heep(Overlay):
 
     def estimate_energy(self, cells):
 
-        with open('/home/g.monteasi/x-heep-femu-sdk/sw/riscv/pwr_val/TSMC_65nm_' + cells + '_20MHz.csv') as power_values_file:
+        with open('/home/g.monteasi/x-heep-femu-tflite-sdk/sw/riscv/pwr_val/TSMC_65nm_' + cells + '_20MHz.csv') as power_values_file:
             power_values_reader = csv.reader(power_values_file, delimiter=',')
             power_values = []
             for row in power_values_reader:
                 power_values.append(row)
 
-            with open('/home/g.monteasi/x-heep-femu-sdk/sw/riscv/build/perf_estim.csv') as perf_estim_file:
+            with open('/home/g.monteasi/x-heep-femu-tflite-sdk/sw/riscv/build/perf_estim.csv') as perf_estim_file:
                 perf_estim_reader = csv.reader(perf_estim_file, delimiter=',')
                 perf_estim = []
                 for row in perf_estim_reader:
@@ -540,7 +540,7 @@ class x_heep(Overlay):
                             \
                             ( float(power_values[28][5])  *  float(perf_estim[28][7]) )
 
-                with open('/home/g.monteasi/x-heep-femu-sdk/sw/riscv/build/energy_estim.csv', mode='w') as energy_estim_file:
+                with open('/home/g.monteasi/x-heep-femu-tflite-sdk/sw/riscv/build/energy_estim.csv', mode='w') as energy_estim_file:
                     energy_estim_writer = csv.writer(energy_estim_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
                     # Save energy estimation to CSV file

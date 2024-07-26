@@ -11,17 +11,17 @@ pkill screen
 sudo pkill screen
 
 # Run UART
-cd /home/g.monteasi/x-heep-femu-sdk/sw/arm/tools/uart/
+cd /home/g.monteasi/x-heep-femu-tflite-sdk/sw/arm/tools/uart/
 sudo ./run_uart.sh
 cd - > /dev/null 2>&1
 
 # Run OpenOCD
-cd /home/g.monteasi/x-heep-femu-sdk/sw/arm/tools/openocd
+cd /home/g.monteasi/x-heep-femu-tflite-sdk/sw/arm/tools/openocd
 sudo ./run_openocd.sh
 cd - > /dev/null 2>&1
 
 # Run GDB
-cd /home/g.monteasi/x-heep-femu-sdk/sw/arm/tools/gdb
+cd /home/g.monteasi/x-heep-femu-tflite-sdk/sw/arm/tools/gdb
 
 if [ $# -eq 0 ]
 then
@@ -43,5 +43,5 @@ sudo screen -X -S uart quit
 echo
 echo "--- APPLICATION OUTPUT ---"
 echo
-cat /home/g.monteasi/x-heep-femu-sdk/sw/riscv/build/stdout.txt
+cat /home/g.monteasi/x-heep-femu-tflite-sdk/sw/riscv/build/stdout.txt
 echo
