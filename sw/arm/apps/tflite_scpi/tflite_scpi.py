@@ -14,6 +14,7 @@ print("Compilation complete")
 print("Running application")
 x_heep_dbg.run_app()
 print("Application run complete")
+print("hello")
 
 
 
