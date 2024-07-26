@@ -12,4 +12,4 @@ sudo pkill screen
 
 # Start Pynq environment
 . /etc/environment
-for f in /etc/profile.d/*.sh; do source $f; done
+for f in /home/g.monteasi/.scripts/*.sh; do source $f; done
