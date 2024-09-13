@@ -7,7 +7,7 @@ x_heep_dbg = x_heep()
 
 # Compile the application
 print("Compiling application: tflite_scpi")
-x_heep_dbg.compile_app("tflite_example")
+x_heep_dbg.compile_app("apps/tflite_scpi/tflite_scpi.cpp")
 print("Compilation complete")
 
 # Run the application
