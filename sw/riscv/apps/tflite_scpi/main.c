@@ -161,6 +161,10 @@ mmio_region_t mmio_region_from_adr(uintptr_t address) {
 }
 
 int main() {
+
+
+  int x = 0;
+  printf("this is x %d\n", x);
   printf("Initializing peripherals...\r\n");
   soc_ctrl.base_addr = mmio_region_from_adr((uintptr_t)SOC_CTRL_START_ADDRESS);
   printf("Initialized soc_ctrl\r\n");
