@@ -41,7 +41,7 @@ INC_FOLDERS += .
 
 LIBSCPI = ./scpi-parser/libscpi
 LIBSCPI_SRC = $(wildcard $(LIBSCPI)/src/*.c)
-LIBSCPI_OBJ = $(LIBSCPI_SRC:.c=.c.o)
+
 
 LIBTFLM = ../../lib/tflite-micro/bin/libtflm.a
 
@@ -105,7 +105,7 @@ INC_FOLDERS_GCC    = $(addprefix -I ,$(INC_FOLDERS))
 %.dis: %.elf
 	$(RISCV_EXE_PREFIX)objdump -S $< > $@
 
-tflite_scpi.elf: $(CPP_OBJS) $(OBJS) $(LIBSCPI_OBJ) $(LIBTFLM)
+tflite_scpi.elf: $(CPP_OBJS) $(OBJS) $(LIBTFLM)
 	$(RISCV_EXE_PREFIX)gcc -march=rv32imc -o $@ -w -Os -g -std=gnu11 -nostdlib \
 		$(CUSTOM_GCC_FLAGS) \
                 -DHOST_BUILD \
@@ -114,7 +114,7 @@ tflite_scpi.elf: $(CPP_OBJS) $(OBJS) $(LIBSCPI_OBJ) $(LIBTFLM)
                 $(INC_FOLDERS_GCC) \
                 -static \
                 $(LIB_CRT) \
-                $(OBJS) $(CPP_OBJS) $(LIBSCPI_OBJ) $(LIBTFLM) $(LIB_RUNTIME) \
+                $(OBJS) $(CPP_OBJS) $(LIBTFLM) $(LIB_RUNTIME) \
                 $(LIB_BASE) \
                 $(LIB_DRIVERS) \
                 -Wl,-Map=tflite_scpi.map \
@@ -122,4 +122,4 @@ tflite_scpi.elf: $(CPP_OBJS) $(OBJS) $(LIBSCPI_OBJ) $(LIBTFLM)
                 -lc -lm -lgcc -lstdc++ -flto -ffunction-sections -fdata-sections -specs=nano.specs
 
 clean:
-	rm -f $(OBJS) $(LIBSCPI_OBJ)
+	rm -f $(OBJS)
