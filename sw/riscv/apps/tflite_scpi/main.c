@@ -22,12 +22,6 @@ volatile int exit_scpi = 0;
 
 
 
-#define SCPI_INPUT_BUFFER_LENGTH 2048
-static char scpi_input_buffer[SCPI_INPUT_BUFFER_LENGTH];
-
-#define SCPI_ERROR_QUEUE_SIZE 17
-scpi_error_t scpi_error_queue_data[SCPI_ERROR_QUEUE_SIZE];
-
 static int modifier = 0;
 
 
